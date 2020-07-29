@@ -73,7 +73,11 @@
                 <div class="score-grade">{{ node.field_score_infra.value }}</div>
             </div>
             {% endif %}
-        </div>        
+        </div>
+        {% if node.field_perks is not empty %}
+          {{ drupal_field('field_perks', 'node', node.id ) }}
+        {% endif %}
+
     </div>
     {% if node.field_geolocation is not empty %}
 
@@ -103,9 +107,6 @@
             {{ node.body.value|raw }}
     </div>
     <div class="company-item aside">
-        {% if node.field_perks is not empty %}
-            {{ drupal_field('field_perks', 'node', node.id ) }}
-        {% endif %}
         {% if node.field_opportunities is not empty %}
           {{ drupal_field('field_opportunities', 'node', node.id ) }}
         {% endif %}
