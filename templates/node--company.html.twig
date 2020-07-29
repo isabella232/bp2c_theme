@@ -106,9 +106,6 @@
         {% if node.field_perks is not empty %}
             {{ drupal_field('field_perks', 'node', node.id ) }}
         {% endif %}
-        {% if node.field_stack is not empty %}
-          {{ drupal_field('field_stack', 'node', node.id ) }}
-        {% endif %}
         {% if node.field_opportunities is not empty %}
           {{ drupal_field('field_opportunities', 'node', node.id ) }}
         {% endif %}
