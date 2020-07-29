@@ -1,0 +1,486 @@
+/*******************************************************************************
+ * Listing card
+ ******************************************************************************/
+.block-views-blockrecent-listings-block-1 {	
+	.view-content {
+		@include susy-clearfix();
+	}
+
+	.views-row {
+		@media (min-width: $largedesktop) {
+			@include span(3 of 12);
+
+			&:nth-child(4n) {
+				@include last();
+			}
+
+			&:nth-child(4n + 1) {
+				clear: left;
+			}
+		}
+
+		@media (min-width: $tablet) and (max-width: $largedesktop) {
+			@include span(6 of 12);
+
+			&:nth-child(2n) {
+				@include last();
+			}			
+		}
+
+		border: 1px solid $color-gray-lighter;
+		box-sizing: border-box;
+		margin-bottom: 30px;
+		padding: 16px 16px 10px 16px;
+		position: relative;
+		top: 0;
+		transition: all .2s ease;
+		transform: translateZ(1px);
+
+		&:hover {
+			box-shadow: 0 1px 2px rgba(#000, .06);
+			top: -2px;
+		}
+	}
+
+	.views-field-field-image {
+		margin: -17px -17px 10px -17px;
+
+		img {
+			display: block;
+			height: auto;
+			width: 100%;
+		}
+
+		@media (max-width: $tablet) {
+			img {
+				height: auto;
+				width: 100%;
+			}
+		}
+	}
+
+	.views-field-field-category {
+		background-color: rgba($color-black, .9);				
+		left: 10px;
+		position: absolute;		
+		top: 10px;
+
+		a {
+			color: #fff;
+			display: block;
+			padding: 5px 10px 3px 10px;
+			font-size: 11px;
+			text-decoration: none; 
+		}
+	}
+
+	.views-field-field-price {
+		background-color: $color-primary;
+		color: #fff;				
+		font-size: 11px;
+		padding: 5px 10px 3px 10px;
+		position: absolute;		
+		right: 10px;
+		text-decoration: none;
+		top: 10px;
+	}
+
+	.views-field-field-location {
+		a { 
+			color: $color-primary;
+			font-size: 10px;
+			font-weight: 600;
+			line-height: 1;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+	}
+
+	.views-field-title {
+		display: inline-block;
+
+		h3 {
+			display: block;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 4px 0 0 0;
+			overflow: hidden;
+			padding: 0;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+
+	.views-field-field-verified {
+		display: inline-block;
+		margin: 5px 0 0 10px;
+		vertical-align: top;
+
+		.true:after {
+			-webkit-font-smoothing: antialiased;
+			color: $color-primary; 
+			content: '\f058';
+			font-family: 'FontAwesome';			
+			font-size: 16px;
+		}
+	}
+}
+
+/*******************************************************************************
+ * Exposed listings filter - hero unit
+ ******************************************************************************/
+$height: 820px;
+
+.listings-filter-background {
+	background-position: center center;
+	background-size: cover;
+	content: '';
+	display: block;
+	height: 100vh;
+	max-height: $height;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	width: 100vw;
+	z-index: 0;
+}
+
+#block-exposedformrecent-listingspage-1 {
+	align-items: center;	
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: center;
+	margin-top: -78px;
+	max-height: $height;
+	position: relative;
+
+	&:after {
+		background-image: linear-gradient(to right, rgba(#000, .6), rgba(#000, .4));
+		bottom: 0;
+		content: '';
+		display: block;
+		left: 50%;
+		height: 100vh;
+		max-height: $height;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transform: translateX(-50%);
+		width: 100vw;
+		z-index: 1;
+	}
+
+	h2 {		
+		color: #fff;
+		font-size: 44px;
+		font-weight: 300;
+		line-height: 1.5;
+		margin: 38px 0 120px 0;
+		opacity: 0;
+		position: relative;
+		text-align: center;
+		top: 0;
+		transition: all 1s ease;
+		transform: translateZ(1px);
+		z-index: 2;
+
+		.page-animate & {
+			opacity: 1;
+			top: 15px;
+		}
+
+		@media (max-width: $tablet) {
+			font-size: 28px;
+		}
+
+		strong {
+			bottom: -45px;
+			color: rgba(#fff, .8); 
+			display: block;			
+			font-size: 18px;
+			font-weight: 300;  
+			left: 50%;
+			opacity: 0;
+			padding: 0;
+			position: absolute;
+			transform: translateX(-50%) translateZ(1px);
+			transition: all 1s ease 1s;
+			white-space: nowrap;
+
+
+			.page-animate & {
+				bottom: -30px;
+				opacity: 1;
+			}
+
+			@media (max-width: $tablet) {
+				font-size: 14px;
+			}
+		}
+	}
+
+	form {				
+		position: relative;
+		z-index: 2;
+	}
+
+	.form-item {
+		@media (min-width: $tablet) {
+			@include span(3 of 9);
+		}
+
+		@media (max-width: $tablet) {
+			margin: 0 0 30px 0;
+			width: 100%;
+		}
+
+		label {
+			cursor: pointer;
+			color: rgba($color-black, .7);
+			display: block;
+			font-size: 14px;
+			font-weight: 400;
+			margin: 0 0 -38px 20px;
+			padding: 0;
+			position: relative;
+			z-index: 10;
+
+			&.hide {
+				opacity: 0;
+			}
+		}
+
+		input {
+			background-position: right 15px center !important;
+			border: 0;
+			border-radius: 4px;
+			box-shadow: 0 2px 3px rgba(#000, .16);
+			box-sizing: border-box;
+			height: 52px;
+			padding: 0 20px;
+			position: relative;
+			width: 100%;
+			z-index: 9;
+
+			&:focus, &:active {
+				box-shadow: 0 2px 4px rgba(#000, .2);
+				outline: 0;
+			}
+		}
+
+		&:nth-child(3n) {
+			@include last();
+		}
+	}
+
+	.form-actions {
+		float: left;
+		margin: 20px 0 0 0;
+		text-align: center;
+		width: 100%;
+
+		@media (max-width: $tablet) {
+			margin-top: 0;
+			width: 100%;
+		}
+	}
+
+	.form-submit {
+		@extend .button, .button-lg; 
+
+		@media (max-width: $tablet) {			
+			margin: 0;
+			width: 100%;
+		}		
+	}
+}
+
+/*******************************************************************************
+ * Page
+ ******************************************************************************/
+.view-taxonomy-term.view-id-taxonomy_term, .view-recent-listings.view-id-recent_listings.view-display-id-page_1 {	
+	.views-row {
+		@include susy-clearfix();
+
+		border-bottom: 1px solid rgba(#000, .04);
+		margin: 0 0 30px 0;
+		padding: 0 0 30px 0;
+		position: relative;
+
+		&:last-child {
+			border-bottom: 0;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+
+		.views-field-title {
+			h3 {
+				font-weight: 400;
+				line-height: 1.5;
+				margin: 0 0 20px 0;
+			}
+		}
+
+		.views-field-field-location {
+			margin: -22px 0 15px 0;
+
+			a {
+				font-size: 13px;
+				color: rgba($color-gray, .7);
+				text-decoration: none;
+			}
+		}
+
+ 		.views-field-field-category {
+			@media (min-width: $tablet) {
+				position: absolute;
+				right: 0;
+				top: 14px;
+			}
+
+ 			a {
+ 				color: $color-primary;
+ 				font-size: 13px;
+ 				font-weight: 500;
+ 				text-decoration: none;
+ 			}
+ 		}
+
+		.views-field-field-image {
+			@media (min-width: $tablet) {
+				float: left;
+				margin: 0 30px 0 0;
+				width: 240px;
+			}
+
+			@media (max-width: $tablet) {
+				margin: 0 0 30px 0;
+			}
+			img {
+				display: block;
+				height: auto;
+				width: 100%;
+			}
+		}
+
+		.views-field-body {
+			border-top: 1px solid rgba(#000, .06);
+			font-size: 13px;
+			line-height: 2;
+
+			padding: 20px 0 0 0;
+
+			@media (min-width: $tablet) {
+				margin: 0 0 0 270px;
+			}
+
+			p {
+				margin: 0;
+			}
+		}
+
+		.views-field-view-node {
+			@include susy-clearfix();			
+			float: left;
+			margin: 20px 0 0 0;
+
+			a {
+				color: $color-primary;
+				display: block;								
+				font-size: 13px;
+				font-weight: 500;
+				line-height: 1;				
+				text-decoration: none;
+
+				&:after {
+					-webkit-font-smoothing: antialiased;
+					content: '\f054';
+					font-family: 'FontAwesome';
+					font-size: 8px;
+					margin: 0 0 0 10px;
+					vertical-align: 1px;
+				}
+			}			
+		}
+
+		.views-field-field-verified {
+			display: block;
+			left: 10px;
+			margin: 0;
+			position: absolute;
+			top: 10px;
+			vertical-align: top;
+
+			.true:after {
+				-webkit-font-smoothing: antialiased;
+				background-color: $color-primary;
+				border-radius: 50%;
+				box-shadow: 0 1px 2px rgba(#000, .2);
+				color: #fff; 
+				content: '\f00c';
+				display: block;
+				font-family: 'FontAwesome';			
+				font-size: 12px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				width: 28px;
+			}
+		}		
+	}
+}
+
+/*******************************************************************************
+ * Large exposed form
+ ******************************************************************************/
+#views-exposed-form-recent-listings-page-2 {
+	border: 1px solid rgba(#000, .06);
+	margin: 0 0 50px 0;
+	padding: 20px 20px 15px 20px;
+	position: relative;
+
+	&:before {
+		background-color: rgba(#000, .01);
+		bottom: 0;
+		content: '';
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: -1;
+	}
+
+	.form-item {
+		@media (min-width: $tablet) {
+			@include span(3 of 12);
+
+			&:nth-child(4n) {
+				@include last();
+			}
+		}
+	}
+
+	.form-actions {
+		@include susy-clearfix();
+
+		background-color: rgba(#000, .01);
+		border-top: 1px solid rgba(#000, .06);
+		margin: 0 -20px -15px -20px;
+		padding: 15px 20px 15px 20px;
+
+		input {
+			float: right;
+		}
+
+		#edit-reset {
+			background-color: transparent;
+			border-radius: 0;
+			color: rgba($color-black, .5);
+			margin: 0 30px 0 0;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}

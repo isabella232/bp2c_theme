@@ -1,0 +1,168 @@
+$font-color: rgba(#fff, .7);
+
+.footer-top {
+	background-color: $color-black-medium;		
+	color: $font-color;
+	font-size: 13px;
+
+	.block {
+		@include susy-clearfix();
+
+		h2 {
+			color: #fff;
+			font-size: 16px;
+			font-weight: 400;
+			margin: 0 0 30px 0;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.region {
+		@include susy-clearfix();
+
+		@media (min-width: $desktop) {
+			@include span(4 of 12);
+
+			&:nth-child(3n) {
+				@include last();
+			}
+		}
+
+		@media (max-width: $desktop) {
+			clear: both;
+			margin: 50px 30px 0px 30px;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}		
+	}
+
+	.menu {
+		margin: 0 0 -15px 0;
+		padding: 0;
+
+		li {
+			margin: 0 0 15px 0;
+			padding: 0;
+			position: relative;
+
+			@media (min-width: $desktop) {
+				@include span(6 of 12);
+
+				&:nth-child(2n) {
+					@include last();
+				}
+			}
+
+			@media (min-width: $tablet) and (max-width: $desktop) {
+				@include span(4 of 12);
+
+				&:nth-child(3n) {
+					@include last();
+				}					
+			}
+		}
+
+		a {
+			color: $font-color;
+			text-decoration: none;
+			transition: color .2s ease;
+
+			&.is-active {
+				color: rgba(#fff, .7);
+			}
+
+			&:before {
+				-webkit-font-smoothing: antialiased;
+				color: $color-primary;
+				content: '\f054';
+				font-family: 'FontAwesome';
+				font-size: 8px;
+				margin: 0 10px 0 0;
+				transition: all .2s ease;
+				vertical-align: 1px;
+			}
+
+			&:hover {
+				color: #fff;
+
+				&:before {
+					margin: 0 13px 0 0;
+				}
+			}
+		}
+	}
+}
+
+.footer-top-inner {
+	@include container($width-page);	
+
+	border-bottom: 1px solid rgba(#fff, .06); 
+	padding: 50px 0;
+}
+
+.footer-bottom {
+	background-color: $color-black-medium;
+	color: $font-color;
+	font-size: 13px;
+	padding: 30px 0;
+
+	a {
+		color: $font-color !important;
+	}
+
+	.menu {
+		margin: 0;
+
+		li {
+			display: inline-block;
+			margin: 0 0 0 30px;
+			padding: 0;
+		}
+
+		a {
+			text-decoration: none;
+			transition: color .2s ease;
+
+			&:hover {
+				color: #fff !important;
+			}
+		}
+	}
+}
+
+.footer-bottom-inner {
+	@include container($width-page); 
+	padding: 0 30px;
+
+	.menu {
+		li {
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+.region-footer-left {
+	float: left;
+
+	@media (max-width: $tablet) {
+		float: none;
+	}
+}
+
+.region-footer-right {	
+	float: right;
+
+	@media (max-width: $tablet) {
+		border-top: 1px solid rgba(#fff, .1);
+		float: none;
+		margin-top: 30px;
+		padding-top: 30px;		
+	}	
+}

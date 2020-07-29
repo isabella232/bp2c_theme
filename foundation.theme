@@ -1,0 +1,205 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_form_alter() to add classes to the search form.
+ */
+function foundation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Custom placeholder for search block input
+  if (in_array($form_id, ['search_block_form', 'search_form'])) {  	    
+    $form['keys']['#attributes']['placeholder'] = t('Search');
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function foundation_preprocess_block__home_search_form(&$variables) {
+  // Adds containter before title which will hold custom background image
+  $background = theme_get_setting('search_background_path', 'foundation');
+  $variables['title_prefix'] = array(
+    '#type' => 'container',
+    '#attributes' => array(
+      'class' => 'listings-filter-background',
+      'style' => 'background-image: url(' . file_create_url( $background ) . ');'
+    ),
+  );
+
+}
+
+/**
+ * Implementes hook_preprocess_node().
+ */
+function foundation_preprocess_node(&$variables) {
+  $variables['display_submitted'] = FALSE;
+}
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ */
+function foundation_preprocess_breadcrumb(&$variables) {
+  $request = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+  $variables['breadcrumb'][] = array(
+    'text' => $page_title
+  );
+
+}
+
+/**
+ * Implements hook_preprocess_page_title().
+ */
+function foundation_preprocess_page_title(&$variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    if ($node->getType() == 'listing') {
+      $variables['title'] = array(
+        '#markup' => $variables['title']
+      );
+
+      if (!empty($node->field_image) && !empty($node->field_image->entity)) {
+        $image                         = '<img src="' . file_create_url($node->field_image->entity->getFileUri()) . '" alt="">';
+        $variables['title']['#markup'] = '<div class="node-listing-image">' . $image . '</div>' . $variables['title']['#markup'];
+      }
+/*
+      if (!empty($node->field_address->value)) {
+        $variables['title']['#markup'] .= '<div class="node-listing-address">' . nl2br($node->field_address->value) . '</div>';
+      }
+*/
+      $address_html = '';
+
+      if (!empty($node->field_address[0]->address_line1))
+          $address_html .= $node->field_address[0]->address_line1.'<br />';
+
+      if (!empty($node->field_address[0]->address_line2))
+          $address_html .= $node->field_address[0]->address_line2.'<br />';
+      if (!empty($node->field_address[0]->dependent_locality))
+          $address_html .= $node->field_address[0]->dependent_locality.'<br />';
+      if (!empty($node->field_address[0]->locality))
+          $address_html .= $node->field_address[0]->locality.' ';
+      if (!empty($node->field_address[0]->administrative_area))
+          $address_html .= $node->field_address[0]->administrative_area.' ';
+      if (!empty($node->field_address[0]->postal_code))
+          $address_html .= $node->field_address[0]->postal_code;
+
+      $variables['title']['#markup'] .= '<div class="node-listing-address">'.$address_html.'</div>';
+
+      $variables['address_html']['#markup'] = $address_html;
+
+      if (!empty($node->field_website->uri)) {
+        $variables['title']['#markup'] .= '<div class="node-listing-website"><a href="' . $node->field_website->uri . '">' . $node->field_website->title . '</a></div>';
+      }
+
+      if (!empty($node->field_email->value)) {
+        $variables['title']['#markup'] .= '<div class="node-listing-email"><a href="mailto:' . $node->field_email->value . '">' . $node->field_email->value . '</a></div>';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function foundation_preprocess_page(&$variables) {
+  $variables['to_top'] = theme_get_setting('to_top', 'foundation');
+  $variables['search_background_path'] = theme_get_setting('search_background_path', 'foundation');
+
+  $social['facebook'] = theme_get_setting('social_facebook', 'foundation');
+  $social['twitter'] = theme_get_setting('social_twitter', 'foundation');
+  $social['pinterest'] = theme_get_setting('social_pinterest', 'foundation');
+  $social['google'] = theme_get_setting('social_google', 'foundation');
+  $social['youtube'] = theme_get_setting('social_youtube', 'foundation');  
+ 
+  if (count($social) > 0) {
+    $variables['social'] = $social;
+  }
+}
+
+/**
+ * Custom theme settings form validate callback
+ */
+function foundation_form_system_theme_settings_validate(array &$form, FormStateInterface $form_state) {
+  $validators = array('file_validate_extensions' => array('ico png gif jpg jpeg apng svg'));
+  $file = file_save_upload('search_background_upload', $validators, FALSE, 0);
+
+  if (!empty($file)) {
+    $filename = file_unmanaged_copy($file->getFileUri());
+    $form_state->setValue('search_background_path', $filename);
+  }
+}
+
+/**
+ * Implements hook_form_system_theme_settings_alter
+ */
+function foundation_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {  
+  // Adds custom validation handler
+  $form['#validate'][] = 'foundation_form_system_theme_settings_validate';
+
+  $social = array(
+    'facebook' => t('Facebook'),
+    'twitter' => t('Twitter'),
+    'pinterest' => t('Pinterest'),
+    'google' => t('Google'),
+    'youtube' => t('YouTube'),
+  );
+
+  $form['foundation_settings']['general'] = array(
+    '#type' => 'details',
+    '#title' => t('General'),
+    '#open' => TRUE,
+  );
+
+  $form['foundation_settings']['general']['google_maps_api_key'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Google Maps API Key'),
+    '#default_value' => theme_get_setting('google_maps_api_key', 'foundation'),
+  );
+  
+  $form['foundation_settings']['general']['to_top'] = array(
+    '#type' => 'checkbox',
+    '#title'=> t('Display icon for moving the site to top'),
+    '#default_value' => theme_get_setting('to_top', 'foundation'),
+  );
+
+  $form['foundation_settings']['general']['search_background_path'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Path to custom search background image'),
+    '#default_value' => theme_get_setting('search_background_path', 'foundation'),
+  );
+
+  $form['foundation_settings']['general']['search_background_upload'] = array(
+    '#type' => 'file',
+    '#title' => t('Upload custom search background image'),
+    '#maxlength' => 40,    
+  );
+
+  $form['foundation_settings']['social'] = array(
+    '#type' => 'details',
+    '#title' => t('Social'),
+    '#open' => TRUE,
+  );
+
+  foreach( $social as $key => $value) {
+    $form['foundation_settings']['social']['social_' . $key] = array(
+      '#type'          => 'textfield',
+      '#title'         => $value,
+      '#default_value' => theme_get_setting('social_' . $key, 'foundation'),
+    );
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ */
+function foundation_js_alter(&$javascript, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+  $key = 'https://maps.googleapis.com/maps/api/js?callback=initMap';
+  $value = theme_get_setting( 'google_maps_api_key' );
+
+  if (!empty($javascript[$key]) && !empty($value)) {
+    $javascript[$key]['data'] = $key . '&key=' . $value;
+  }
+}

@@ -1,0 +1,16 @@
+.breadcrumb {	
+	color: $color-gray;
+	font-size: 12px;		
+	padding: 10px 0;
+
+	li {
+		&:before {
+			margin: 0 5px;
+		}
+	}
+	
+	a {
+		color: $color-primary;
+		font-size: 12px;		
+	}
+}

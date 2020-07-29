@@ -1,0 +1,28 @@
+#main-wrapper {
+	background: linear-gradient(to bottom, #fafafa, #fff 60px);
+}
+
+#main {
+	@include container($width-page); 
+	padding: 0 30px;
+}
+
+#content {
+	@media (min-width: $tablet) {
+		&.has-sidebar {
+			@include span(7 of 10);
+		}
+	}
+}
+
+#sidebar-first {
+	@media (min-width: $tablet) {
+		@include span(3 of 10);
+		@include last();
+	}
+}
+
+.region-bottom {
+	clear: both;
+	padding-top: 60px;
+}

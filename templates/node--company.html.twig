@@ -1,0 +1,118 @@
+{%
+    set classes = [
+      'node',
+      'node--type-' ~ node.bundle|clean_class,
+      node.isPromoted() ? 'node--promoted',
+      node.isSticky() ? 'node--sticky',
+      not node.isPublished() ? 'node--unpublished',
+      view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    ]
+  %}
+  {{ attach_library('classy/node') }}
+  <article{{ attributes.addClass(classes) }}>
+  
+    {% if teaser %}
+    {{ title_prefix }}
+      <h2{{ title_attributes }}>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h2>
+    {{ title_suffix }}
+  
+      {% if display_submitted %}
+      <footer class="node__meta">
+        {{ author_picture }}
+        <div{{ author_attributes.addClass('node__submitted') }}>
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+          {{ metadata }}
+        </div>
+      </footer>
+      {% endif %}
+  
+    <div{{ content_attributes.addClass('node__content') }}>
+      {{ content }}
+    </div>
+    {% endif %}
+
+    {% if page %}
+    <div class="company-container">
+    <div id="company-header" class="company-item main">
+        <h1 id="company-name">{{ node.label }}</h1>
+        {% if node.field_website is not empty %}
+        <div id="company-website">
+            {{ drupal_field('field_website', 'node', node.id ) }}
+        </div>
+        {% endif %}
+        <div id="company-scores">
+            {% if node.field_score_comp is not empty %}
+            <div class="score-box">
+                <div class="score-label">Compensación</div>
+                <div class="score-grade">{{ node.field_score_comp.value }}</div>
+            </div>
+            {% endif %}
+            {% if node.field_score_dp is not empty %}
+            <div class="score-box">
+                <div class="score-label">Desarrollo profesional</div>
+                <div class="score-grade">{{ node.field_score_dp.value }}</div>
+            </div>
+            {% endif %}
+            {% if node.field_score_cult is not empty %}
+            <div class="score-box">
+                <div class="score-label">Cultura</div>
+                <div class="score-grade">{{ node.field_score_cult.value }}</div>
+            </div>
+            {% endif %}
+            {% if node.field_score_gender is not empty %}
+            <div class="score-box">
+                <div class="score-label">Gender Friendly</div>
+                <div class="score-grade">{{ node.field_score_gender.value }}</div>
+            </div>
+            {% endif %}
+            {% if node.field_score_infra is not empty %}
+            <div class="score-box">
+                <div class="score-label">Infraestructura</div>
+                <div class="score-grade">{{ node.field_score_infra.value }}</div>
+            </div>
+            {% endif %}
+        </div>        
+    </div>
+    {% if node.field_geolocation is not empty %}
+
+    {% set companyaddress = '' %}
+    {% if node.field_address.0.address_line1 is not empty %}
+      {% set companyaddress = companyaddress ~ node.field_address.0.address_line1 %}
+    {% endif %}
+    {% if node.field_address.0.address_line2 is not empty %}
+      {% set companyaddress = companyaddress ~ '<br />' ~ node.field_address.0.address_line2 %}
+    {% endif %}
+    {% if node.field_address.0.locality is not empty %}
+      {% set companyaddress = companyaddress ~ '<br />' ~ node.field_address.0.locality ~ ' ' %}
+    {% endif %}
+    {% if node.field_address.0.administrative_area is not empty %}
+      {% set companyaddress = companyaddress ~ node.field_address.0.administrative_area %}
+    {% endif %}
+    <div class="company-map-wrapper company-item aside">
+        <div class="node-listing-map" id="node-listing-map"
+             data-icon="https://bestplacetocode.com/themes/foundation/assets/img/marker.png"
+             data-latitude="{{ node.field_geolocation.lat }}"
+             data-longitude="{{ node.field_geolocation.lng }}" 
+             data-address="{{ companyaddress }}">
+        </div>
+    </div>
+    {% endif %}
+    <div id="company-description" class="company-item main">
+            {{ node.body.value|raw }}
+    </div>
+    <div class="company-item aside">
+        {% if node.field_perks is not empty %}
+            {{ drupal_field('field_perks', 'node', node.id ) }}
+        {% endif %}
+        {% if node.field_stack is not empty %}
+          {{ drupal_field('field_stack', 'node', node.id ) }}
+        {% endif %}
+        {% if node.field_opportunities is not empty %}
+          {{ drupal_field('field_opportunities', 'node', node.id ) }}
+        {% endif %}
+    </div>
+    {% endif %}
+
+</article>

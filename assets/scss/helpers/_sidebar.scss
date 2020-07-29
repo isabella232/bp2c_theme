@@ -1,0 +1,82 @@
+.sidebar {
+	@media (max-width: $tablet) {
+		margin-top: 60px;
+	}
+
+	.block {
+		border: 1px solid rgba(#000, .08);
+		margin: 0 0 30px 0;
+		padding: 20px;
+
+		h2 {
+			border-bottom: 1px solid rgba(#000, .08);
+			color: $color-black;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0 0 20px 0;
+			padding: 0 0 20px 0;
+		}
+	}
+
+	.contact-message-feedback-form {
+		@include susy-clearfix();
+
+		.button {
+			float: right;
+
+			&#edit-preview {
+				background-color: transparent;
+				color: rgba($color-black, .5);
+				float: left;
+				margin: 0;
+				padding: 0 0 0 10px;
+			}
+		}
+	}
+
+	.block-search {
+		form {
+			display: table;
+			width: 100%;
+
+			> div {
+				display: table-cell;
+				vertical-align: top;
+			}
+		}
+
+		input[type=search] {
+			border-right: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			padding-right: 0;
+			width: 100%;
+		}
+
+		input[type=submit] {
+			background-color: transparent;
+			background-image: none;
+			border: 1px solid $color-gray-light;
+			border-left: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			padding: 0;
+			width: 100%;
+		}
+
+		.form-actions {
+			position: relative;
+			width: 30px;
+
+			&:after {
+				color: $color-black;
+				content: '\f002';
+				font-family: 'FontAwesome';
+				font-size: 12px;
+				position: absolute;
+				right: 20px;
+				top: 17px;
+			}
+		}
+	}	
+}

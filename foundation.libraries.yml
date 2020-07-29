@@ -1,0 +1,21 @@
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      assets/css/foundation.css: {}
+  js:
+    https://maps.googleapis.com/maps/api/js?callback=initMap: {type: external, attributes: { defer: true, async: true, data-test: map-link } }
+    assets/js/foundation.js: {}      
+scoll-to:
+  js:
+    assets/libraries/jquery.scrollTo.js: {}  
+owl-carousel:
+  css:
+    theme:
+      assets/libraries/owl-carousel/assets/owl.carousel.css: {}
+  js:
+    assets/libraries/owl-carousel/owl.carousel.min.js: {}
+poppins:
+  css:
+    theme:
+      https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&subset=latin-ext: { type: external, minified: true }      

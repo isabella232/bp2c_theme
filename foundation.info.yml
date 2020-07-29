@@ -1,0 +1,30 @@
+name: Foundation
+type: theme
+base theme: classy
+description: 'Clear Directory & Listings Drupal 8 Theme incorporating beautiful styling of directory website elements. All components are well justified and responsive. Theme is focusing on user experience and clean UI.'
+package: Foundation
+regions:
+  header: Header
+  front_page: 'Front page'
+  breadcrumb: Breadcrumb
+  content_top: 'Content top'
+  content: Content
+  sidebar_first: 'Sidebar first'
+  bottom: Bottom
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_left: 'Footer left'
+  footer_right: 'Footer right'
+libraries:
+  - core/jquery
+  - core/drupal.ajax
+  - core/drupal
+  - core/drupalSettings
+  - core/jquery.once
+  - foundation/owl-carousel
+  - foundation/poppins
+  - foundation/scroll-to
+  - foundation/global-styling  
+version: '1.0.6'
+core: '8.x'

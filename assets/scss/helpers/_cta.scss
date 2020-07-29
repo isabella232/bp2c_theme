@@ -1,0 +1,47 @@
+.cta {
+	background-color: $color-primary;
+	margin: 0 -1200px;
+	padding: 40px 1200px;
+
+	h2 {
+		color: #fff;
+		float: left;
+		font-weight: 400;
+		line-height: 48px;
+		margin: 0;
+		padding: 0;
+
+		@media (min-width: $tablet) and (max-width: $desktop) {
+			clear: right;
+		}
+		
+		@media (max-width: $tablet) {			
+			float: none;
+			line-height: 1.5;
+			margin: 0 0 30px 0;
+			text-align: center;
+		}		
+	}
+
+	a {
+		float: right;
+
+		@media (max-width: $tablet) {
+			font-size: 12px;
+			margin: 0;
+			padding-left: 0;
+			padding-right: 0;
+			text-align: center;	
+			white-space: nowrap;
+			width: 48%;
+
+			&.button-white-transparent {
+				float: left;
+			}
+		}
+	}
+}
+
+.cta-inner { 
+	@include susy-clearfix();
+}

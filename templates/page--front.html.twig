@@ -1,0 +1,96 @@
+<div id="page-wrapper">
+  <div id="page">
+    <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
+      <div class="section layout-container clearfix">
+        {{ page.secondary_menu }}
+        {{ page.header }}
+        {{ page.primary_menu }}
+        <div class="navigation-toggler"><i class="fa fa-bars"></i></div>
+      </div>
+    </header>
+    {% if page.highlighted %}
+      <div class="highlighted">
+        <aside class="layout-container section clearfix" role="complementary">
+          {{ page.highlighted }}
+        </aside>
+      </div>
+    {% endif %}
+    {% if page.featured_top %}
+      <div class="featured-top">
+        <aside class="featured-top__inner section layout-container clearfix" role="complementary">
+          {{ page.featured_top }}
+        </aside>
+      </div>
+    {% endif %}
+    <div id="main-wrapper" class="layout-main-wrapper layout-container clearfix">
+      <div id="main" class="layout-main clearfix">
+
+        {{ page.breadcrumb }}
+        <main id="content" class="column main-content" role="main">
+          <section class="section">
+            <a id="main-content" tabindex="-1"></a>
+            
+            {{ page.front_page }}      
+          </section>
+        </main>       
+
+        {% if page.bottom %}
+          {{ page.bottom }}
+        {% endif %}             
+      </div>       
+    </div>
+
+    <footer class="site-footer">
+      <div class="layout-container">
+        {% if page.footer_first or page.footer_second or page.footer_third %}
+          <div class="footer-top">
+            <div class="footer-top-inner">
+              {{ page.footer_first }}
+              {{ page.footer_second }}
+              {{ page.footer_third }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if page.footer_left or page.footer_right %}
+          <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+              {{ page.footer_left }}
+              {{ page.footer_right }}
+            </div><!-- /.footer-bottom-inner -->
+          </div>
+        {% endif %}
+      </div>
+    </footer>
+  </div>
+</div>
+
+{% if social %}
+  <ul class="social-links">
+    {% if social.facebook %}
+      <li class="facebook"><a href="{{ social.facebook }}"><i class="fab fa-facebook"></i></a></li>
+    {% endif %}
+
+    {% if social.twitter %}
+      <li class="twitter"><a href="{{ social.twitter }}"><i class="fab fa-twitter"></i></a></li>
+    {% endif %}
+
+    {% if social.pinterest %}
+      <li class="pinterest"><a href="{{ social.pinterest }}"><i class="fab fa-instagram"></i></a></li>
+    {% endif %}        
+
+    {% if social.google %}
+      <li class="google"><a href="{{ social.google }}"><i class="fa fa-google"></i></a></li>
+    {% endif %}            
+
+    {% if social.youtube %}
+      <li class="youtube"><a href="{{ social.youtube }}"><i class="fa fa-youtube"></i></a></li>
+    {% endif %}    
+  </ul>
+{% endif %}
+
+{% if to_top %}
+  <div id="to-top">
+    <i class="fa fa-chevron-up"></i>
+  </div>
+{% endif %}

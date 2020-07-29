@@ -1,0 +1,161 @@
+#header {	
+	@include susy-clearfix();
+	border-bottom: 1px solid rgba(#000, .08);
+	padding: 16px 0;
+	position: relative;
+	z-index: 10;
+
+	.path-frontpage & {
+		border-color: rgba(#fff, .14);
+	}
+
+	.layout-container {
+		@include container($width-page);
+		padding: 0 30px;
+	}
+
+	.region {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+.region-header {
+	width: 100%;
+
+	.site-logo {
+		display: inline-block;
+
+		img {
+			margin: 0 10px 0 0;
+			max-height: 32px;
+			vertical-align: middle;
+		}
+	}
+
+	.site-name {
+		border-right: 1px solid rgba(#000, .08);
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		margin: 0;
+		padding: 4px 30px 4px 0;
+
+		@media (max-width: $tablet) {
+			border-right: 0;
+			padding-right: 0;
+		}
+
+		.path-frontpage & {
+			border-color: rgba(#fff, .14);
+		}
+
+		a {
+			color: $color-black;
+			text-decoration: none;
+
+			.path-frontpage & {
+				color: #fff;
+			}
+		}		
+	}
+
+	.block.block-search {
+		@media (max-width: $tablet) {
+			display: none !important;
+		}
+	}
+
+	.block-system-branding-block, 
+	.block.block-menu.navigation ,
+	.block.block-search {
+		display: inline-block;
+	}
+
+	.block.block-search {
+		float: right;
+		margin-top: 1px;
+		position: relative;
+
+		.form-item, .form-actions {
+			display: block;
+			float: left;
+			margin: 0;
+			vertical-align: top;
+		}
+
+		.form-item {
+			&:after {
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+
+				content: '\f002';
+				display: block;
+				font-family: 'FontAwesome';
+				font-size: 13px;
+				position: absolute;
+				right: 20px;
+				top: 13px;
+
+				.path-frontpage & {
+					color: #fff !important;
+				}				
+			}
+		}
+
+		input[type=search] {
+			background-color: transparent;			
+			border: 1px solid $color-gray-light;
+			border-radius: 20px 0 0 20px;
+			border-right: 0;
+			box-sizing: border-box;
+			color: $color-gray;
+			font-size: 13px;
+			height: 40px;
+			margin: 0;
+			padding: 0 0 0 23px;
+			width: 200px;
+
+			&:active, &:focus {
+				box-shadow: none;
+				outline: 0;
+			}
+
+			.path-frontpage & {
+				border-color: rgba(#fff, .4);
+				color: #fff;		
+
+				&::-webkit-input-placeholder {
+				    color: #fff; 
+				}
+
+				&::-moz-placeholder {
+				   color: #fff;
+				   opacity: 1;
+				}
+
+				&:-ms-input-placeholder {
+				   color: #fff;
+				}				
+			}				
+		}
+
+		input[type=submit] {
+			background-color: transparent;
+			background-image: none;
+			border: 1px solid $color-gray-light;
+			border-left: 0;			
+			border-radius: 0 20px 20px 0;
+			height: 40px;			
+			font-size: 0;
+			line-height: 40px;
+			margin: 0;
+			padding: 0;	
+			width: 40px;	
+
+			.path-frontpage & {
+				border-color: rgba(#fff, .4);
+			}	
+		}
+	}
+}

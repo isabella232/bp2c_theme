@@ -1,0 +1,34 @@
+.block-local-tasks-block {
+		border-bottom: 1px solid rgba(#000, .06);
+		margin: 0 0 25px 0;
+		padding: 0 0 15px 0;
+
+	.tabs {
+		line-height: 1;
+		margin: 0;
+		padding: 0;
+
+		li {
+			margin: 0 26px 0 0;
+			padding: 0;
+
+			a {				
+				color: $color-gray;
+				font-size: 13px;
+				line-height: 1;
+				margin: 0;
+				padding: 0;
+
+				&.is-active {
+					background-color: transparent;
+					color: $color-primary;
+				}
+
+				&:hover {
+					background-color: transparent;
+					color: $color-primary;
+				}
+			}
+		}
+	}
+}

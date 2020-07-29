@@ -1,0 +1,143 @@
+/*******************************************************************************
+ * Locations block
+ ******************************************************************************/
+.region-front-page .block-views-blocklocations-block-1 {	
+	@extend .fullwidth;
+
+	.view-content {
+		@include susy-clearfix();
+	}
+
+	.views-row {
+		@media (min-width: $tablet) and (max-width: $desktop) {
+			@include span(6 of 12);
+
+			&:nth-child(2) {
+				@include span(6 of 12);
+				@include last();
+			}
+
+			&:nth-child(4), &:nth-child(6) {
+				@include last();
+			}
+		}
+
+		@media (min-width: $desktop) {
+			@include span(3 of 12);
+
+			&:nth-child(2) {
+				@include span(6 of 12);
+			}
+
+			&:nth-child(3), &:nth-child(7) {
+				@include last();
+			}
+		}
+
+		margin-bottom: 30px;
+		height: 260px;
+		position: relative;
+
+		.views-field-name {
+			left: 50%;
+			position: absolute;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			z-index: 10;
+
+			a {
+				color: #fff;
+				font-size: 24px;
+				font-weight: 300;
+				text-decoration: none;
+				text-shadow: 0 1px 2px rgba(#000, .6);
+				white-space: nowrap;
+			}
+		}
+
+		.views-field-field-image {
+			background-color: $color-gray-lighter;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			bottom: 0;
+			image-rendering: -webkit-optimize-contrast;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+
+			&:after {
+				background-color: rgba(#000, .26);
+				bottom: 0;
+				content: '';
+				display: block;
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+
+			img {
+				display: none;
+				height: auto;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.region-sidebar-first .block-views-blocklocations-block-1 {
+	.view-content {
+		@include susy-clearfix();
+	}
+
+	.views-row {
+		@include susy-clearfix();
+
+		border-bottom: 1px solid rgba(#000, .04);
+		margin: 0 0 14px 0;
+		padding: 0 0 14px 0;
+		position: relative;
+
+		&:last-child {
+			border: 0;
+			margin: 0;
+			padding: 0;
+		}
+
+		.views-field-name {			
+			a {
+				color: $color-gray;
+				display: block;
+				line-height: 40px;
+				text-decoration: none;
+
+				&:after {
+					color: $color-primary;
+					content: '\f054';
+					font-family: 'FontAwesome';
+					font-size: 9px;
+					position: absolute;
+					right: 20px;
+				}
+			}
+		}
+
+		.views-field-field-image {
+			background-position: center center;
+			background-repeat: no-repeat;			
+			background-size: cover;
+			float: left;
+			height: 40px;
+			margin: 0 18px 0px 0;
+			overflow: hidden;
+			text-align: center;
+			width: 40px;
+
+			img {
+				display: none;
+			}
+		}		
+	}
+}

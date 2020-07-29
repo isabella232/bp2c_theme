@@ -1,0 +1,62 @@
+body {
+	// -moz-osx-font-smoothing: grayscale;
+
+	background-color: #fff;
+	color: $color-gray;
+	font-family: 'Poppins', 'Arial', sans-serif;
+	font-size: 14px;		
+	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $color-black;
+
+	a {
+		color: $color-black;
+		text-decoration: none;
+	}
+}
+
+h1 {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+h2 {
+	font-size: 22px;
+	font-weight: 500;
+}
+
+h3 {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+p {
+	line-height: 2;
+}
+
+a {
+	color: $color-primary;
+	text-decoration: underline;
+}
+
+details {
+	@include susy-clearfix();
+	
+	border: 1px solid rgba(#000, .06);
+	padding: 14px 20px;
+
+	summary {
+		color: $color-black;		
+
+		&:focus {
+			box-shadow: none;
+			outline: none;
+		}
+	}
+
+	> .details-wrapper {
+		padding: 0;
+	}
+}

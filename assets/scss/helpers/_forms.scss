@@ -1,0 +1,82 @@
+input[type=text], input[type=search], input[type=password], input[type=email], textarea, select {		
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	
+	background-color: #fff;
+	background-position: right 15px center !important;
+	border: 1px solid $color-gray-light;
+	border-radius: 4px;
+	box-sizing: border-box;
+	height: 46px;
+	padding: 0 16px;
+	width: 100%;
+	
+	&:active, &:focus {		
+		outline: none;
+	}
+}
+
+select {	
+	background-position: right 16px top 50%;
+	background-repeat: no-repeat;
+	background-image: url('../img/caret.svg') !important;	
+	cursor: pointer;
+	padding-right: 34px;
+}
+
+textarea {
+	height: auto;
+}
+
+fieldset {
+	border: 1px solid rgba(#000, .06);
+	margin: 15px 0 !important;
+	padding: 14px 20px;
+
+	legend {
+		span {			
+			color: $color-black;
+			display: block;
+			font-weight: 500;
+			margin: 0 0 10px 0;
+		}
+	}
+
+	fieldset {
+		margin: 0 !important;
+	}
+}
+
+.form--inline .form-item, .form-item {
+	float: none;
+	margin: 0 0 15px 0;
+
+	label {
+		clear: both;
+		color: $color-black;
+		cursor: pointer;
+		display: block;
+		font-size: 13px;
+		font-weight: 500;
+		margin: 0 0 5px 0;
+	}
+
+	&.form-type-checkbox {
+		label {
+			color: rgba($color-black, .7);
+			display: inline-block;
+			margin: 0 0 0 5px;
+		}
+	}
+
+	.description {
+		color: rgba($color-black, .5);
+		font-style: italic;
+		font-size: 12px;
+		margin: 5px 0 0 0;
+	}
+ 
+	input.error {
+		border-width: 1px;
+	}
+}

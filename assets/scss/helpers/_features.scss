@@ -1,0 +1,68 @@
+.block-views-blockfeatures-block-1 {
+	@extend .fullwidth;
+
+	.view-content {
+		@include susy-clearfix();
+	}
+
+	.views-row {		
+		@media (min-width: $desktop) {
+			@include span(4 of 12);
+
+			&:nth-child(3n) {
+				@include last();
+			}			
+
+			&:nth-child(3n + 1) {
+				clear: left;
+			}			
+		}
+		
+		@media (min-width: $tablet) and (max-width: $desktop) {
+			@include span(6 of 12);
+
+			&:nth-child(2n) {
+				@include last();
+			}			
+
+			&:nth-child(2n + 1) {
+				clear: left;
+			}				
+		}
+
+		margin-bottom: 60px;
+		position: relative;
+
+		p {
+			font-size: 13px;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.views-field-field-icon {
+		float: left;
+		margin: 7px 20px 20px 0;
+
+		.fa {
+			color: rgba(#000, .3);
+			font-size: 26px;
+		}
+	}
+
+	.views-field-field-subtitle {
+		color: $color-primary;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	.views-field-title {
+		h2 {
+			color: $color-black;
+			font-size: 16px;
+			margin: 0 0 20px 0;
+			padding: 0;
+		}
+	}
+}

@@ -1,0 +1,64 @@
+.social-links {
+	box-shadow: 0 0 20px rgba(#000, .12);	
+	left: 0;
+	list-style: none;	
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	right: auto;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2; 
+
+	a {
+		background-color: rgba(#000, .06);
+		color: #fff;
+		display: block;
+		font-size: 15px;
+		height: 42px;
+		line-height: 42px;
+		text-align: center;
+		transition: background-color .2s ease;
+		width: 42px;
+	}
+
+	.facebook a {
+		background-color: $color-facebook;
+
+		&:hover {
+			background-color: darken($color-facebook, 3%);
+		}
+	}
+
+	.twitter a {
+		background-color: $color-twitter;
+
+		&:hover {
+			background-color: darken($color-twitter, 3%);
+		}		
+	}
+
+	.pinterest a {
+		background-color: $color-pinterest;
+
+		&:hover {
+			background-color: darken($color-pinterest, 3%);
+		}				
+	}	
+
+	.google a {
+		background-color: $color-google;
+
+		&:hover {
+			background-color: darken($color-google, 3%);
+		}				
+	}	
+
+	.youtube a {
+		background-color: $color-youtube;
+		
+		&:hover {
+			background-color: darken($color-youtube, 3%);
+		}				
+	}	
+}   

@@ -1,0 +1,121 @@
+/*******************************************************************************
+ * Categories block
+ ******************************************************************************/
+.region-front-page .block-views-blockcategories-block-1 {	
+	.view-content {
+		@include susy-clearfix();
+	}
+
+	.views-row {
+		@media (min-width: $tablet) {
+			@include span(2 of 10);
+
+			&:nth-child(5n) {
+				@include last();
+			}
+
+			&:nth-child(5n+1) {
+				clear: left;
+			}			
+		}
+
+		@media (max-width: $tablet) {
+			@include span(2 of 4)
+
+			&:nth-child(2n) {
+				@include last();
+			}
+
+			&:nth-child(2n + 1) {
+				clear: left;
+			}			
+		}
+
+		border: 1px solid $color-gray-lighter;
+		box-sizing: border-box;
+		margin-bottom: 30px;
+		padding: 20px;
+		position: relative;
+		top: 0;
+		transition: all .2s ease;
+		transform: translateZ(1px);
+
+		&:hover {
+			box-shadow: 0 1px 2px rgba(#000, .06);
+			top: -2px;
+		}
+
+		.views-field-field-icon {
+			margin: 0 0 10px 0;
+			text-align: center;
+
+			img {
+				height: auto;
+				opacity: .7;
+				width: 40px;
+			}
+		}
+
+		.views-field-name {
+			text-align: center; 
+
+			a {
+				color: $color-black;
+				font-weight: 300;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.region-sidebar-first .block-views-blockcategories-block-1 {
+	.view-content {
+		@include susy-clearfix();
+	}
+
+	.views-row {
+		@include susy-clearfix();
+
+		border-bottom: 1px solid rgba(#000, .04);
+		margin: 0 0 14px 0;
+		padding: 0 0 14px 0;
+		position: relative;
+
+		&:last-child {
+			border: 0;
+			margin: 0;
+			padding: 0;
+		}
+
+		.views-field-name {			
+			a {
+				color: $color-gray;
+				display: block;
+				line-height: 32px;
+				text-decoration: none;
+
+				&:after {
+					color: $color-primary;
+					content: '\f054';
+					font-family: 'FontAwesome';
+					font-size: 9px;
+					position: absolute;
+					right: 20px;
+				}
+			}
+		}
+
+		.views-field-field-icon {
+			float: left;
+			margin: 0 18px 0px 0;
+			text-align: center;
+
+			img {
+				display: block;
+				height: auto;
+				opacity: .5;
+				width: 32px;
+			}
+		}		
+	}
+}

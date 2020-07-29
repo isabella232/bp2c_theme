@@ -1,0 +1,59 @@
+.region-front-page .views-element-container {
+	padding-bottom: 60px;
+
+	.view-content {
+		@include susy-clearfix();
+	}
+	
+	> h2 {
+		color: $color-black;
+		font-size: 26px;
+		font-weight: 400;
+		margin: 0;
+		padding:  60px 0 90px 0; 
+		position: relative;
+		text-align: center;
+
+		strong {
+			color: $color-gray;
+			display: block;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 2;
+			margin: 15px auto 0 auto;
+			max-width: 50%;
+
+			@media (min-width: $tablet) and (max-width: $desktop) {
+				max-width: 80%;
+			}			
+			
+			@media (max-width: $tablet) {
+				max-width: 100%;
+			}
+		}
+
+		&:after {
+			background-color: $color-primary;
+			bottom: 50px;
+			content: '';
+			display: block;
+			left: calc(50% - 14px);
+			height: 3px;
+			position: absolute;
+			transform: translateX(-50%);
+			width: 40px;
+		}
+
+		&:before {
+			background-color: $color-primary;
+			bottom: 50px;
+			content: '';
+			display: block;
+			left: calc(50% + 22px); 
+			height: 3px;
+			position: absolute;
+			transform: translateX(-50% );
+			width: 20px;			
+		}
+	}
+}
